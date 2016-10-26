@@ -1,5 +1,5 @@
 {
-  "name": "quickenVD",
+  "name": "FinancialTracker",
   "version": "1.0.0",
   "description": "Fun and games",
   "engines": {
@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/davsy17/quickenVD.git"
+    "url": "https://github.com/vwtan/FinancialTracker.git"
   },
-  "author": "D and V",
+  "author": "Vincent",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/davsy17/quickenVD/issues"
+    "url": "https://github.com/vwtan/FinancialTracker/issues"
   },
   "dependencies": {
     "ejs": "^2.4.2",
