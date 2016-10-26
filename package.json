@@ -1,0 +1,27 @@
+{
+  "name": "quickenVD",
+  "version": "1.0.0",
+  "description": "Fun and games",
+  "engines": {
+    "node": "4.1.1"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davsy17/quickenVD.git"
+  },
+  "author": "D and V",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davsy17/quickenVD/issues"
+  },
+  "dependencies": {
+    "ejs": "^2.4.2",
+    "express": "^4.14.0",
+    "jade": "^1.11.0",
+    "path": "^0.12.7"
+  }
+}
