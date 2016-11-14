@@ -15,6 +15,11 @@ html,body{
 	font-family: 'Roboto', 'Helvetica Neue', Helvetica,Arial,sans-serif;
 	color: rgba(0, 0, 0, .87);
 }
+
+body {
+	background-color: #f3f3f3;
+}
+
 a:link, a:visited {
     text-decoration: none;
 }

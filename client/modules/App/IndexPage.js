@@ -1,12 +1,12 @@
 import React from 'react';
-// import { Link } from 'react-router';
+import { Link } from 'react-router';
 
 import styles from './App.css';
 
 export function IndexPage(props) {
   return (
     <div>
-      <p>TEST eP4aAGE</p><br />
+      <p><Link to="/user/" className={styles.btn}>Login</Link></p><br />
     </div>
   );
 }

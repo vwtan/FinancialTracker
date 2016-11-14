@@ -1,0 +1,15 @@
+.sidebar {
+  height:100%;
+  position: fixed;
+  width: 200px;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  z-index: 1;
+  background-color: rgb(39, 50, 59);
+  color: #fff;
+}
+
+.sidebar p {
+  padding: 0px;
+}

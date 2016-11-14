@@ -17,6 +17,8 @@ if (typeof require.ensure !== 'function') {
 if (process.env.NODE_ENV !== 'production') {
   // Require async routes only in development for react-hot-reloader to work.
   require('./modules/App/IndexPage');
+  require('./modules/User/UserBasePage');
+  require('./modules/User/pages/Dashboard');
 }
 
 // react-router setup with code-splitting
@@ -30,5 +32,21 @@ export default (
         });
       }}
     />
+    <Route
+      path="/user/"
+      getComponent={(nextState, cb) => {
+        require.ensure([], (require) => {
+          cb(null, require('./modules/User/UserBasePage').default);
+        });
+      }}
+    >
+      <IndexRoute
+        getComponent={(nextState, cb) => {
+          require.ensure([], (require) => {
+            cb(null, require('./modules/User/pages/Dashboard').default);
+          });
+        }}
+      />
+    </Route>
   </Route>
 );

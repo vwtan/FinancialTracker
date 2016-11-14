@@ -27,7 +27,7 @@ export class App extends Component {
           titleTemplate="%s - tracker"
         />
         <div className={styles.app}>
-          {this.props.children }
+          { this.props.children }
         </div>
       </div>
     );

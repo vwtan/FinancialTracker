@@ -2,39 +2,16 @@
   height: 100%;
 }
 
-.app {
-  max-width: 980px;
-  margin: auto;
-  padding-top: 14px;
-  overflow: auto;
-  min-height: 100%;
-  margin-bottom: -15px;
-}
-
-.app a:visited, a:link {
-  color: #0288D1;
-}
-.app a:hover {
-  text-decoration: underline;
-}
-.circles {
-  padding-left: 2em;
-}
-.itable{
-  border-spacing: 0;
-}
-.itable tbody td{
-  border-bottom: 1px solid rgba(0,0,0,0.25);
-  min-width: 3em;
-  padding: 0.25em;
-}
-h3 {
-  margin-top:1em;
-  font-size: 1.3em;
-}
-h4 {
-  margin-top:1em;
-  font-size: 1.1em;
+.btn {
+  display: inline-block;
+  text-align: center;
+  background-color: rgb(54, 143, 215);
+  color: white;
+  width: 200px;
+  text-transform: uppercase;
+  padding: 10px 10px;
+  border: 0;
+  border-radius: 3px;
 }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
