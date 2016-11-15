@@ -1,25 +1,26 @@
+//colors
+@import '../../colors.scss';
+
+
 .sidebar {
-  height:100%;
-  position: fixed;
-  width: 200px;
-  top: 0;
-  left: 0;
-  overflow-x: hidden;
-  z-index: 1;
-  background-color: rgb(39, 50, 59);
-  color: #fff;
-  text-align: center;
-}
-
-.sidebar p {
-  padding: 15px;
-  text-transform: uppercase;
-}
-
-.sidebar p:hover {
-  background-color: rgba(0,0,0,0.25);
-}
-
-.sidebar a {
-  color: #fff;
+	height: 100%;
+	position: fixed;
+	width: 200px;
+	top: 0;
+	left: 0;
+	overflow-x: hidden;
+	z-index: 1;
+	background-color: $color_dark1;
+	color: $white;
+	text-align: center;
+	p {
+		padding: 15px;
+		text-transform: uppercase;
+		&:hover {
+			background-color: $black_25;
+		}
+	}
+	a {
+		color: $white;
+	}
 }
