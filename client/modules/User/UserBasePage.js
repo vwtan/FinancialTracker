@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import styles from './User.css';
+import styles from './User.scss';
 import Sidebar from './components/Sidebar';
 
 /* eslint react/prop-types: 0 */

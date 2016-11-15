@@ -1,0 +1,34 @@
+//colors
+$color_curious_blue_approx: rgb(54, 143, 215);
+$white: white;
+
+.container {
+	height: 100%;
+}
+.btn {
+	display: inline-block;
+	text-align: center;
+	background-color: $color_curious_blue_approx;
+	color: $white;
+	width: 200px;
+	text-transform: uppercase;
+	padding: 10px;
+	border: 0;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 3px;
+}
+@media only screen and(min-device-width : 320px) and(max-device-width : 480px) {
+	.app {
+		max-width: 85%;
+	}
+}
+@media only screen and(min-device-width : 480px) and(max-device-width : 768px) {
+	.app {
+		max-width: 85%;
+	}
+}
+@media only screen and(min-device-width : 768px) and(max-device-width : 1024px) {
+	.app {
+		max-width: 85%;
+	}
+}

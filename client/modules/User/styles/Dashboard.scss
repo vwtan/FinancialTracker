@@ -1,0 +1,30 @@
+//colors
+$white: #fff;
+$color_alto_approx: #ddd;
+$single_width: 400px;
+$margin_: 5px;
+
+.dashmain {
+	margin-left: 200px;
+	display: inline-block;
+}
+.card {
+  background-color: $white;
+  text-align: center;
+  border: 1px $color_alto_approx solid;
+  padding: 10px;
+  margin: $margin_;
+  display:inline-block;
+}
+.card-1 {
+  @extend .card;
+	width: $single_width;
+}
+.card-2 {
+	@extend .card;
+	width: $single_width * 2 + $margin_ * 2;
+}
+.card-3 {
+	@extend .card;
+	width:  $single_width * 3 + $margin_ * 4;
+}

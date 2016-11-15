@@ -8,8 +8,18 @@
   z-index: 1;
   background-color: rgb(39, 50, 59);
   color: #fff;
+  text-align: center;
 }
 
 .sidebar p {
-  padding: 0px;
+  padding: 15px;
+  text-transform: uppercase;
+}
+
+.sidebar p:hover {
+  background-color: rgba(0,0,0,0.25);
+}
+
+.sidebar a {
+  color: #fff;
 }

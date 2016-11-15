@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import styles from '../../styles/Dashboard.css';
+import styles from '../../styles/Dashboard.scss';
 
 
 export function DashboardCard(props) {
   return (
-    <div className={styles[props.style]}>
+    <div className={styles[props.stylename]}>
       {props.children}
     </div>
   );
@@ -14,7 +14,7 @@ export function DashboardCard(props) {
 
 DashboardCard.propTypes = {
   children: React.PropTypes.string,
-  style: React.PropTypes.string,
+  stylename: React.PropTypes.string,
 };
 
 export default DashboardCard;

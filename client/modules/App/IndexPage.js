@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import styles from './App.css';
+import styles from './App.scss';
 
 export function IndexPage(props) {
   return (

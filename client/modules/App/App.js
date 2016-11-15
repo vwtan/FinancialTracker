@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import DevTools from './components/DevTools';
 
-import styles from './App.css';
+import styles from './App.scss';
 
 export class App extends Component {
   constructor(props) {
