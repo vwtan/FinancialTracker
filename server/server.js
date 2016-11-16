@@ -7,12 +7,12 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 
-
 import { Provider } from 'react-redux';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import Helmet from 'react-helmet';
+import dotenv from 'dotenv';
 
 import configureStore from '../client/store';
 import fetchComponentData from './util/fetchComponentData';
@@ -20,6 +20,7 @@ import routes from '../client/routes';
 import config from '../config/webpack.client.dev';
 import serverConfig from './config';
 
+dotenv.config();
 
 const app = new Express();
 

@@ -4,15 +4,17 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
 const CONFIG = require('./webpack.common')
+const serverConfig = require('../server/config')
 
 const { CLIENT_ENTRY, CLIENT_OUTPUT, PUBLIC_PATH } = CONFIG
+
 
 module.exports = {
     devtool: 'cheap-module-eval-source-map',
     entry: {
         main: [
           'eventsource-polyfill',
-          'webpack-hot-middleware/client?http://127.0.0.1:3000/',
+          `webpack-hot-middleware/client?http://127.0.0.1:${process.env.PORT || serverConfig.port}/`,
           'webpack/hot/only-dev-server',
           'react-hot-loader/patch',
           CLIENT_ENTRY
@@ -25,7 +27,7 @@ module.exports = {
 
     output: {
       filename: 'app.js',
-      publicPath: 'http://127.0.0.1:3000/',
+      publicPath: `http://127.0.0.1:${process.env.PORT || serverConfig.port}/`,
       path: CLIENT_OUTPUT
     },
 
