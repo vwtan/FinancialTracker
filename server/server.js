@@ -2,6 +2,7 @@ import path from 'path';
 import Express from 'express';
 import bodyParser from 'body-parser';
 import compression from 'compression';
+import Sequelize from 'sequelize';
 
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
@@ -23,6 +24,46 @@ import serverConfig from './config';
 dotenv.config();
 
 const app = new Express();
+
+var sequelize = new Sequelize('postgres://:@localhost:5432/fin_tracker');
+
+
+// database initiation
+sequelize.authenticate().then(function(err) {
+    console.log('Connection has been established successfully.');
+    var Task = sequelize.define('task', {
+      title: Sequelize.STRING,
+      description: Sequelize.TEXT,
+      deadline: Sequelize.DATE
+    });
+
+    Task.create({ title: 'John Doe', description: 'senior engineer', deadline: '01/01/2019' })
+      .then(function(employee) {
+
+        console.log(employee.get('title'));
+        console.log(employee.get('description'));
+      })
+
+    Task.sync();
+
+  })
+  .catch(function (err) {
+    console.log('Unable to connect to the database:', err);
+  });
+
+// end point to get All entries in table
+app.get('/db_data', function(req, res) {
+  sequelize.Task.findAll({
+    attributes: { exclude: ['deadline'] }
+  })
+  .then(function(ret){
+    console.log(ret[0].dataValues.title);
+    console.log(ret[0].dataValues.description);
+    res.end(JSON.stringify(ret));
+  });
+
+});
+
 
 if (process.env.NODE_ENV === 'development') {
   const compiler = webpack(config);
