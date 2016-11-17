@@ -18,14 +18,13 @@ class IndexPage extends Component {
     callApi('register', 'post', { info: creds });
   }
   render() {
-    const t = this;
     return (
       <div className={styles.appPage}>
-        <input className={styles.input} type="text" ref={(c) => { t.username = c; }} placeholder="Username" /><br />
-        <input className={styles.input} type="password" ref={(c) => { t.password = c; }} placeholder="Password" />
+        <input className={styles.input} type="text" ref={(c) => { this.username = c; }} placeholder="Username" /><br />
+        <input className={styles.input} type="password" ref={(c) => { this.password = c; }} placeholder="Password" />
         <p>
-          <button className={styles.btn} onClick={() => { t.handleClick(); }}>Login</button>
-          <button className={styles.btn} onClick={() => { t.handleClick2(); }}>Register</button>
+          <button className={styles.btn} onClick={() => { this.handleClick(); }}>Login</button>
+          <button className={styles.btn} onClick={() => { this.handleClick2(); }}>Register</button>
         </p><br />
       </div>
     );

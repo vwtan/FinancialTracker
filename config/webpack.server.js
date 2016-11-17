@@ -1,10 +1,10 @@
 var fs = require('fs');
 var path = require('path');
-var ExternalsPlugin = require('webpack-externals-plugin');
+var ExternalsPlugin = require('webpack2-externals-plugin');
 
 module.exports = {
 
-  entry: path.join(process.cwd(), 'server/server.js'),
+  entry: path.join(process.cwd(), '/server/server.js'),
 
   output: {
     path: path.join(process.cwd(), '/build/'),
@@ -20,7 +20,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['.js', '.jsx'],
     modules: [
       'client',
       'node_modules',

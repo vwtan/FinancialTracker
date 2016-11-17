@@ -6,5 +6,5 @@ module.exports = {
   SERVER_ENTRY:  path.join(process.cwd(), 'server/server.js'),
   SERVER_OUTPUT: path.join(process.cwd(), 'build'),
   SERVER_PORT: 3005,
-  PUBLIC_PATH: '/build/'
+  PUBLIC_PATH: '/'
 }
