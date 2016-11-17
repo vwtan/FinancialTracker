@@ -3,8 +3,8 @@ import sequelize from '../sequelize';
 
 
 // accTable will be set to UserID_accounts table in db
-
-const accTable = sequelize.define(userID.concat('_accounts'), {
+const accTable = sequelize.define('accounts', {
+  user: Sequelize.STRING,
   name: Sequelize.STRING,
   id: Sequelize.STRING,
   balance: Sequelize.FLOAT(11, 2),
@@ -13,7 +13,8 @@ const accTable = sequelize.define(userID.concat('_accounts'), {
 });
 
 //transactionTable will be set to UserID_transactions table in db
-const transactionTable = sequelize.define(userID.concat('_transactions'){
+const transactionTable = sequelize.define('transactions'{
+  user: Sequelize.STRING,
   date: Sequelize.DATE,
   name: Sequelize.STRING,
   category: Sequelize, STRING,
