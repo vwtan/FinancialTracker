@@ -26,9 +26,7 @@ export class App extends Component {
           title="Home"
           titleTemplate="%s - tracker"
         />
-        <div className={styles.app}>
-          { this.props.children }
-        </div>
+        { this.props.children }
       </div>
     );
   }

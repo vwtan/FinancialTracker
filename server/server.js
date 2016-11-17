@@ -20,6 +20,7 @@ import routes from '../client/routes';
 import config from '../config/webpack.client.dev';
 import serverConfig from './config';
 
+// read env variables from .env in root directory
 dotenv.config();
 
 const app = new Express();
