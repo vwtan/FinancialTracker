@@ -2,6 +2,7 @@ import path from 'path';
 import Express from 'express';
 import bodyParser from 'body-parser';
 import compression from 'compression';
+import Sequelize from 'sequelize';
 
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
@@ -19,9 +20,21 @@ import fetchComponentData from './util/fetchComponentData';
 import routes from '../client/routes';
 import config from '../config/webpack.client.dev';
 import serverConfig from './config';
+import apiroutes from './routes/routes';
+import sequelize from './sequelize';
 
 // read env variables from .env in root directory
 dotenv.config();
+
+/* eslint no-console: 0 */
+// database initiation
+sequelize.authenticate().then((err) => {
+  console.log('Connection has been established successfully.');
+}).catch((err) => {
+  console.log('Unable to connect to the database:', err);
+});
+
+sequelize.Promise = global.Promise;
 
 const app = new Express();
 
@@ -36,6 +49,7 @@ app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(Express.static(path.resolve(__dirname, '../build')));
 app.use('static', Express.static(path.resolve(__dirname, '../public')));
+app.use('/api', apiroutes);
 
 const renderFullPage = (html, initialState) => {
   const head = Helmet.rewind();

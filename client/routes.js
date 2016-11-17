@@ -40,13 +40,13 @@ export default (
         });
       }}
     >
-      <IndexRoute
-        getComponent={(nextState, cb) => {
-          require.ensure([], (require) => {
-            cb(null, require('./modules/User/pages/Dashboard').default);
-          });
-        }}
-      />
+    <IndexRoute
+      getComponent={(nextState, cb) => {
+        require.ensure([], (require) => {
+          cb(null, require('./modules/User/pages/Dashboard').default);
+        });
+      }}
+    />
     </Route>
   </Route>
 );
