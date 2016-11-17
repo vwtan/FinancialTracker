@@ -20,50 +20,22 @@ import fetchComponentData from './util/fetchComponentData';
 import routes from '../client/routes';
 import config from '../config/webpack.client.dev';
 import serverConfig from './config';
+import apiroutes from './routes/routes';
+import sequelize from './sequelize';
 
 dotenv.config();
 
-const app = new Express();
-
-var sequelize = new Sequelize('postgres://:@localhost:5432/fin_tracker');
-
-
+/* eslint no-console: 0 */
 // database initiation
-sequelize.authenticate().then(function(err) {
-    console.log('Connection has been established successfully.');
-    var Task = sequelize.define('task', {
-      title: Sequelize.STRING,
-      description: Sequelize.TEXT,
-      deadline: Sequelize.DATE
-    });
-
-    Task.create({ title: 'John Doe', description: 'senior engineer', deadline: '01/01/2019' })
-      .then(function(employee) {
-
-        console.log(employee.get('title'));
-        console.log(employee.get('description'));
-      })
-
-    Task.sync();
-
-  })
-  .catch(function (err) {
-    console.log('Unable to connect to the database:', err);
-  });
-
-// end point to get All entries in table
-app.get('/db_data', function(req, res) {
-  sequelize.Task.findAll({
-    attributes: { exclude: ['deadline'] }
-  })
-  .then(function(ret){
-    console.log(ret[0].dataValues.title);
-    console.log(ret[0].dataValues.description);
-    res.end(JSON.stringify(ret));
-  });
-
+sequelize.authenticate().then((err) => {
+  console.log('Connection has been established successfully.');
+}).catch((err) => {
+  console.log('Unable to connect to the database:', err);
 });
 
+sequelize.Promise = global.Promise;
+
+const app = new Express();
 
 if (process.env.NODE_ENV === 'development') {
   const compiler = webpack(config);
@@ -76,6 +48,7 @@ app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(Express.static(path.resolve(__dirname, '../build')));
 app.use('static', Express.static(path.resolve(__dirname, '../public')));
+app.use('/api', apiroutes);
 
 const renderFullPage = (html, initialState) => {
   const head = Helmet.rewind();
