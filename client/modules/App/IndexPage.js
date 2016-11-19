@@ -1,15 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
 
 import callApi from '../../util/apiCaller';
 import styles from './App.scss';
+import { loginUser } from '../User/UserActions';
 
 class IndexPage extends Component {
   handleClick() {
     const username = this.username;
     const password = this.password;
     const creds = { username: username.value.trim(), password: password.value.trim() };
-    callApi('login', 'post', { info: creds });
+    this.props.dispatch(loginUser(creds));
   }
   handleClick2() {
     const username = this.username;
@@ -30,4 +32,15 @@ class IndexPage extends Component {
     );
   }
 }
-export default IndexPage;
+
+function mapStateToProps(state) {
+  const { auth } = state;
+  const { isAuthenticated, errorMessage } = auth;
+
+  return {
+    isAuthenticated,
+    errorMessage,
+  };
+}
+
+export default connect(mapStateToProps)(IndexPage);

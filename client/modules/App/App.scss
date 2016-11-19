@@ -17,11 +17,15 @@
 
 .btn {
 	@extend .box;
-
+	width: 245px;
 	text-align: center;
 	background-color: $color_blue1;
 	color: $white;
 	text-transform: uppercase;
+}
+
+.btn:hover {
+	background-color: $color_blue2;
 }
 
 .appPage{

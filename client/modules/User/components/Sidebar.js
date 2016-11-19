@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import styles from '../User.scss';
+import styles from '../styles/User.scss';
 
 class Sidebar extends Component {
   render() {

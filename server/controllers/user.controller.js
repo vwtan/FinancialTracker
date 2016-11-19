@@ -1,5 +1,9 @@
+import njwt from 'njwt';
+import secureRandom from 'secure-random';
 import bcrypt from 'bcrypt-nodejs';
 import User from '../models/user';
+
+const key = secureRandom(256, { type: 'Buffer' });
 
 export function getUser(req, res) {
   User.findOne({ where: { username: req.params.name } }).then((user) => {
@@ -17,18 +21,23 @@ export function createUser(req, res) {
 }
 
 export function checkUser(req, res) {
-  User.findOne({ where: { username: req.body.info.username } }).then((user) => {
+  User.findOne({ where: { username: req.body.username } }).then((user) => {
     if (user) {
-      if (bcrypt.compareSync(req.body.info.password, user.password)) {
-        console.log('login');
-        res.json({ str: 'success' });
+      if (bcrypt.compareSync(req.body.password, user.password)) {
+        const claims = {
+          iss: 'fin',
+          sub: user.get('username'),
+          scope: 'user',
+        };
+        const token = njwt.create(claims, key);
+        token.setExpiration(new Date().getTime() + (5 * 60 * 1000));
+        const utoken = token.compact();
+        res.status(201).json({ id_token: utoken });
       } else {
-        console.log('failed');
-        res.json({ str: 'fail' });
+        res.status(401).json({ error: 'error either in username or password' });
       }
     } else {
-      console.log('user not found');
-      res.json({ str: 'fail2' });
+      res.status(401).json({ error: 'error either in username or password' });
     }
   });
 }
