@@ -5,9 +5,10 @@ import styles from '../styles/Dashboard.scss';
 import Card from '../components/Dashboard/DashboardCard';
 
 export function Dashboard(props) {
+  const lmao = 'TEST';
   return (
     <div className={styles.dashmain}>
-      <Card stylename="card-1"> Content </Card>
+      <Card stylename="card-1"> {lmao} </Card>
       <Card stylename="card-1"> Content </Card>
       <Card stylename="card-1"> Content </Card>
       <br />

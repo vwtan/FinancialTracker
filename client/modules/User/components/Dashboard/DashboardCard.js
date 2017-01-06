@@ -13,7 +13,7 @@ export function DashboardCard(props) {
 }
 
 DashboardCard.propTypes = {
-  children: React.PropTypes.string,
+  children: React.PropTypes.node,
   stylename: React.PropTypes.string,
 };
 

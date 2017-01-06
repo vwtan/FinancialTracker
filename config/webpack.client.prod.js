@@ -2,25 +2,21 @@
 
 const AssetsPlugin = require('assets-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin');
-const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
+const ChunkManifestPlugin = require('chunk-manifest-webpack2-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
 const CONFIG = require('./webpack.common')
 
-
 module.exports = {
     devtool: 'hidden-source-map',
     entry: {
-        main: [
+        app: [
           CONFIG.CLIENT_ENTRY
         ],
         vendor: [
         'react',
         'react-dom',
-        'react-router',
-        'redux',
-        'react-redux',
       ]
     },
 
@@ -36,15 +32,15 @@ module.exports = {
             {
               test: /\.scss$/,
               exclude: /node_modules/,
-              loader: ExtractTextPlugin.extract('style-loader', 'css-loader?localIdentName=[hash:base64]&modules&importLoaders=1!postcss-loader!sass-loader'),
+              loader: ExtractTextPlugin.extract({fallbackLoader: 'style-loader', loader: 'css-loader?localIdentName=[name]__[local]__[hash:base64:5]&modules&importLoaders=1&sourceMap!sass-loader'}),
             }, {
-              test: /\.css$/,
+              test: /\.scss$/,
               include: /node_modules/,
               loaders: ['style-loader', 'css-loader'],
             }, {
-              test: /\.jsx*$/,
+              test: /\.jsx?$/,
               exclude: [/node_modules/, /.+\.config.js/],
-              loader: 'babel',
+              loader: 'babel-loader',
             }, {
               test: /\.json$/,
               loader: 'json-loader',
@@ -53,36 +49,27 @@ module.exports = {
     },
 
         resolve: {
-        extensions: ['', '.js', '.jsx'],
+        extensions: ['.js', '.jsx'],
         modules: [
           'client',
           'node_modules',
         ],
       },
 
-    // Process the CSS with PostCSS
-    postcss: () => [
-        require('postcss-focus')(),
-        require('postcss-cssnext')({
-            browsers: ['last 2 versions', 'ie > 10']
-        }),
-        require('postcss-reporter')({ // Posts messages from plugins to the terminal
-            clearMessages: true
-        })
-    ],
-
     plugins: [
-      new webpack.DefinePlugin({
-          'process.env': {
-            'NODE_ENV': JSON.stringify('production'),
-          }
-        }),
-        new ExtractTextPlugin('app.[chunkhash].css', { allChunks: true }),
+        new webpack.DefinePlugin({
+            'process.env': {
+              'NODE_ENV': JSON.stringify('production'),
+            }
+          }),
+        new ExtractTextPlugin({filename: 'app.[chunkhash].css',  allChunks: true }),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.AggressiveMergingPlugin(),
-        new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor_[hash].js', 2),
-        new AssetsPlugin({ filename: 'assets.json' }),
-        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.CommonsChunkPlugin({
+          name: 'vendor',
+          minChunks: Infinity,
+          filename: 'vendor.js',
+        }),
         new webpack.optimize.UglifyJsPlugin({
           compressor: {
             screw_ie8: true,
@@ -96,7 +83,6 @@ module.exports = {
             screw_ie8: true
           }
         }),
-        new webpack.NoErrorsPlugin(),
         new ManifestPlugin({
           basePath: '/',
         }),
